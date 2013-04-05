@@ -9,6 +9,7 @@ gemspec
 # your gemspec. These might include edge Rails or gems from your path or
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
+gem 'mongoid', github: 'mongoid/mongoid', ref: '93284ce6e1f658c3f57076af9a8e5dce96082dbb'
 
 # To use debugger
 # gem 'debugger'

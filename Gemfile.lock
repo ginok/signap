@@ -1,3 +1,14 @@
+GIT
+  remote: git://github.com/mongoid/mongoid.git
+  revision: 93284ce6e1f658c3f57076af9a8e5dce96082dbb
+  ref: 93284ce6e1f658c3f57076af9a8e5dce96082dbb
+  specs:
+    mongoid (4.0.0)
+      activemodel (~> 4.0.0.beta)
+      moped (~> 1.4.2)
+      origin (~> 1.0)
+      tzinfo (~> 0.3.22)
+
 PATH
   remote: .
   specs:
@@ -44,7 +55,9 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.22)
     minitest (4.7.0)
+    moped (1.4.5)
     multi_json (1.7.2)
+    origin (1.0.11)
     polyglot (0.3.3)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -88,4 +101,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  mongoid!
   signap!
