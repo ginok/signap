@@ -1,3 +1,3 @@
 Signap::Engine.routes.draw do
-  resources :registerables
+  resources :users
 end

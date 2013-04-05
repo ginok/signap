@@ -1,4 +1,4 @@
 class User
   include Mongoid::Document
-  include Signap::Registerable
+  include Signap::User
 end

@@ -1,5 +1,5 @@
 module Signap
-  module Registerable
+  module User
     extend ActiveSupport::Concern
     include ActiveModel::SecurePassword
 

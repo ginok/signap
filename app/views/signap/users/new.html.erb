@@ -1,5 +1,5 @@
 <%= flash[:notice] if flash[:notice] %>
-<%= form_for(@registerable, url: registerables_path) do |f| %>
+<%= form_for(@user, url: users_path) do |f| %>
   <%= f.label :email %>
   <%= f.email_field :email %>
   <%= f.label :password %>
