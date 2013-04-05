@@ -1,10 +1,12 @@
 module Signap
-  class Registerable
-    include Mongoid::Document
+  module Registerable
+    extend ActiveSupport::Concern
     include ActiveModel::SecurePassword
 
-    has_secure_password
-    field :email, type: String
-    field :password_digest, type: String
+    included do
+      has_secure_password
+      field :email, type: String
+      field :password_digest, type: String
+    end
   end
 end

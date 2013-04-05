@@ -1,11 +1,11 @@
 module Signap
   class RegisterablesController < ApplicationController
     def new
-      @registerable = Registerable.new
+      @registerable = Signap.user_class.new
     end
 
     def create
-      @registerable = Registerable.new(registerable_params)
+      @registerable = Signap.user_class.new(registerable_params)
       if @registerable.save
         redirect_to page_after_sign_up, notice: "Success!!"
       else
@@ -15,7 +15,7 @@ module Signap
 
     private
     def registerable_params
-      params.require(:registerable).permit(:email, :password)
+      params.require(Signap.user_class.to_s.downcase).permit(:email, :password)
     end
 
     def page_after_sign_up
