@@ -28,7 +28,7 @@ module Signap
 
     def require_login
       unless logged_in?
-        redirect_to :login
+        redirect_to signap.login_path
       end
     end
   end
