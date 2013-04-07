@@ -6,7 +6,6 @@ module Signap
 
     def create
       @user = user_class.new(user_params)
-      #debugger
       if @user.save
         redirect_to page_after_sign_up, notice: "Success!!"
       else
