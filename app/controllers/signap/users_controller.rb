@@ -1,11 +1,12 @@
 module Signap
   class UsersController < ApplicationController
     def new
-      @user = Signap.user_class.new
+      @user = user_class.new
     end
 
     def create
-      @user = Signap.user_class.new(user_params)
+      @user = user_class.new(user_params)
+      #debugger
       if @user.save
         redirect_to page_after_sign_up, notice: "Success!!"
       else
@@ -15,7 +16,7 @@ module Signap
 
     private
     def user_params
-      params.require(Signap.user_class.to_s.downcase).permit(:email, :password)
+      params.require(singular_name).permit(:email, :password)
     end
 
     def page_after_sign_up

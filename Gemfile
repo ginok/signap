@@ -29,7 +29,7 @@ end
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'shoulda-matchers'
+  gem 'debugger'
+  gem 'mongoid-rspec'
 end
-
-# To use debugger
-# gem 'debugger'
