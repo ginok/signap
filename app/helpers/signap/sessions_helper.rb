@@ -2,7 +2,7 @@ module Signap
   module SessionsHelper
     def current_user
       return nil if self.session_user_id.nil?
-      @_current_user ||= Signap.user_class.find(self.session_user_id)
+      @_current_user ||= Signap.configuration.user_model.find(self.session_user_id)
     end
 
     def logged_in?
