@@ -1,12 +1,11 @@
 module Signap
   module User
     extend ActiveSupport::Concern
-    include ActiveModel::SecurePassword
+    include Signap::SecurePassword
 
     included do
       has_secure_password
       field :email, type: String
-      field :password_digest, type: String
 
       include Validations
     end

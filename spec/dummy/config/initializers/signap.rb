@@ -1,1 +1,3 @@
-Signap.user_class = "User"
+Signap.configure do |config|
+  config.user_model = User
+end

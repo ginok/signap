@@ -3,7 +3,7 @@ require 'spec_helper'
 describe User do
   context 'when signing up' do
     it { should validate_presence_of(:email) }
-    it { should validate_presence_of(:password) }
+    it { should validate_presence_of(:password_digest) }
     it { should allow_value('test@test.com').for(:email) }
     it { should allow_value('test+something@test.com').for(:email) }
     it { should_not allow_value('test@com').for(:email) }
