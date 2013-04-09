@@ -9,6 +9,14 @@ module Signap
       before_create :generate_confirmation_token, if: :confirmation_required?
     end
 
+    module ClassMethods
+      def confirm_by_token(token)
+        confirmable = self.find_by(:confirmation_token, token)
+        confirmable.confirm!
+        confirmable
+      end
+    end
+
     def confirm!
       self.confirmation_token = nil
       self.confirmed_at = Time.now
