@@ -4,7 +4,7 @@ module Signap
     include Signap::SecurePassword
 
     included do
-      has_secure_password
+      has_secure_password on: :update
       field :email, type: String
 
       include Validations

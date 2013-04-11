@@ -17,6 +17,7 @@ gem 'sass-rails',   '~> 4.0.0.beta1'
 gem 'coffee-rails', '~> 4.0.0.beta1'
 gem 'uglifier', '>= 1.0.3'
 gem 'therubyracer'
+gem 'haml'
 
 
 gem 'mongoid', github: 'mongoid/mongoid', ref: '93284ce6e1f658c3f57076af9a8e5dce96082dbb'

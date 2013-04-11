@@ -75,6 +75,8 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     ffi (1.6.0)
+    haml (4.0.2)
+      tilt
     hike (1.2.1)
     i18n (0.6.4)
     jbuilder (1.0.2)
@@ -186,6 +188,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0.beta1)
   database_cleaner
   debugger
+  haml
   jbuilder (~> 1.0.1)
   jquery-rails
   mongoid!

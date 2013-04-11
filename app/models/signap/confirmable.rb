@@ -3,6 +3,7 @@ module Signap
     extend ActiveSupport::Concern
 
     included do
+      include Signap::SecurePassword
       field :confirmation_token, type: String
       field :confirmed_at, type: DateTime
 
@@ -27,6 +28,15 @@ module Signap
       !!confirmed_at
     end
 
+    def only_if_unconfirmed
+      yield unless confirmed?
+    end
+
+    def has_no_password?
+      self.password_digest.blank?
+    end
+
+    protected
     def generate_confirmation_token
       self.confirmation_token = Signap.generate_token
     end
@@ -35,7 +45,8 @@ module Signap
       self.generate_confirmation_token; save
     end
 
-    protected
+
+
     def confirmation_required?
       !confirmed?
     end
