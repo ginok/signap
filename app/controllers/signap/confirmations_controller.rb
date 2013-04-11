@@ -1,15 +1,9 @@
 module Signap
   class ConfirmationsController < ApplicationController
     def show
-      with_unconfirmed_confirmable do
-        if @confirmable.has_no_password?
-          do_show
-        else
-          do_confirm
-        end
-      end
-      if !@confirmable.errors.empty?
-        render :new
+      @confirmable = user_class.find_by(confirmation_token: params[:confirmation_token])
+      if @confirmable.confirmed?
+        redirect_to :new
       end
     end
 
