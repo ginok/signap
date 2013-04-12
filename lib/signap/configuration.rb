@@ -1,9 +1,10 @@
 module Signap
   class Configuration
-    attr_accessor :user_model, :redirect_url
+    attr_accessor :user_model, :redirect_url, :additional_attributes
 
     def initialize
       @redirect_url = '/'
+      @additional_attributes = [:password]
     end
   end
 

@@ -7,5 +7,9 @@ module Signap
     def singular_name
       ActiveModel::Naming.singular(user_class)
     end
+
+    def additional_attributes
+      Signap.configuration.additional_attributes
+    end
   end
 end

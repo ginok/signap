@@ -34,7 +34,7 @@ module Signap
 
     private
     def confirm_params
-      params.require(:user).permit(:password)
+      params.require(:user).permit(*additional_attributes)
     end
   end
 end
