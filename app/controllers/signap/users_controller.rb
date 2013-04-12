@@ -19,7 +19,7 @@ module Signap
     end
 
     def page_after_sign_up
-      Signap.configuration.redirect_url
+      Signap.configuration.redirect_url_after_registeration
     end
   end
 end

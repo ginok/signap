@@ -19,7 +19,7 @@ module Signap
 
     def login_and_redirect(user, url=nil)
       login(user)
-      redirect_to (url || Signap.configuration.redirect_url)
+      redirect_to (url || Signap.configuration.redirect_url_after_login)
     end
 
     protected

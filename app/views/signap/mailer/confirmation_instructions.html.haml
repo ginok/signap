@@ -1,0 +1,6 @@
+!!! 5
+%html
+  %head
+    %title Welcome to Signap
+  %body
+    =link_to 'Click', confirmation_url(confirmation_token: @user.confirmation_token, host: "localhost:3000") 

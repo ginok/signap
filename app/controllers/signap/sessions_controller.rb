@@ -7,8 +7,7 @@ module Signap
 
     def create
       if @user = user_class.authenticate(session_params[:email], session_params[:password])
-        login(@user)
-        redirect_to page_after_login
+        login_and_redirect(@user, page_after_login)
       else
         login_failed
       end
@@ -25,7 +24,7 @@ module Signap
     end
 
     def page_after_login
-      Signap.configuration.redirect_url
+      Signap.configuration.redirect_url_after_login
     end
 
     def page_after_logout

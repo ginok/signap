@@ -7,7 +7,8 @@ module Signap
       field :confirmation_token, type: String
       field :confirmed_at, type: DateTime
 
-      before_create :generate_confirmation_token, if: :confirmation_required?
+      before_create :generate_confirmation_token
+      after_create :send_on_create_confirmation_instructions
     end
 
     module ClassMethods
@@ -48,6 +49,10 @@ module Signap
 
     def confirmation_required?
       !confirmed?
+    end
+
+    def send_on_create_confirmation_instructions
+      Signap::Mailer.confirmation_instructions(self).deliver
     end
   end
 end
