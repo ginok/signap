@@ -15,7 +15,7 @@ module Signap
 
     private
     def user_params
-      params.require(singular_name).permit(:email, :password)
+      params.require(singular_name).permit(:email)
     end
 
     def page_after_sign_up

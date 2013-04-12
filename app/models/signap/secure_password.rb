@@ -2,16 +2,14 @@ module Signap::SecurePassword
   extend ActiveSupport::Concern
 
   module ClassMethods
-    def has_secure_password(options={})
+    def has_secure_password
       require 'bcrypt'
-
-      options = {}.merge(options)
 
       attr_reader :password
       field :password_digest, type: String
 
       validates_confirmation_of :password
-      validates_presence_of :password_digest, options.slice(:on)
+      validates_presence_of :password_digest, on: :update
 
       if respond_to?(:attributes_protected_by_default)
         def self.attributes_protected_by_default
