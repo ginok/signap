@@ -61,20 +61,29 @@ describe Signap::SecurePassword do
       expect(subject.valid?).to be_true
     end
 
-    it "requires password to be presence in case of update" do
-      subject.save
-      expect(subject.valid?).to be_false
-      subject.password = "password"
-      expect(subject.valid?).to be_true
-    end
+    context "in case of update" do
+      before { expect(subject.save).to be_true }
 
-    describe ".authenticate" do
-      before do
-        expect(subject.save).to be_true
+      it "requires password to be presence in case of update" do
+        expect(subject.valid?).to be_false
+        subject.password = "password"
+        expect(subject.valid?).to be_true
       end
 
-      it "returns false when no password is set" do
-        expect(subject.authenticate("password")).to be_false
+      it "should not allows blank password" do
+        subject.password = ""
+        expect(subject).not_to be_valid
+      end
+
+      it "should not allows blank password in case of mass-assignment" do
+        subject.assign_attributes(password: "")
+        expect(subject).not_to be_valid
+      end
+
+      describe ".authenticate" do
+        it "returns false when no password is set" do
+          expect(subject.authenticate("password")).to be_false
+        end
       end
     end
   end

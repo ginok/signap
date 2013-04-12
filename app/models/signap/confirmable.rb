@@ -16,9 +16,18 @@ module Signap
         confirmable.confirm!
         confirmable
       end
+
+      def find_unconfirmed_confirmable(token)
+        confirmable = self.find_by(confirmation_token: token)
+        return false if confirmable.confirmed?
+        confirmable
+      rescue Mongoid::Errors::DocumentNotFound
+        false
+      end
     end
 
     def confirm!
+      return false if confirmed?
       self.confirmation_token = nil
       self.confirmed_at = Time.now
       save
@@ -26,14 +35,6 @@ module Signap
 
     def confirmed?
       !!confirmed_at
-    end
-
-    def only_if_unconfirmed
-      yield unless confirmed?
-    end
-
-    def has_no_password?
-      self.password_digest.blank?
     end
 
     protected
@@ -44,8 +45,6 @@ module Signap
     def generate_confirmation_token!
       self.generate_confirmation_token; save
     end
-
-
 
     def confirmation_required?
       !confirmed?

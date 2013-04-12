@@ -1,41 +1,35 @@
 module Signap
   class ConfirmationsController < ApplicationController
     def show
-      @confirmable = user_class.find_by(confirmation_token: params[:confirmation_token])
-      if @confirmable.confirmed?
-        redirect_to :new
+      if @confirmable = user_class.find_unconfirmed_confirmable(params[:confirmation_token])
+        do_show
+      else
+        redirect_to new_confirmation_path
       end
     end
 
-    def confirm
-      with_unconfirmed_confirmable do
+    def update
+      if @confirmable = user_class.find_unconfirmed_confirmable(params[:confirmation_token])
         @confirmable.assign_attributes(confirm_params)
         if @confirmable.valid?
           do_confirm
         else
           do_show
         end
+      else
+        redirect_to new_confirmation_path
       end
     end
 
     protected
-    def with_unconfirmed_confirmable
-      @confirmable = user_class.find_by(
-        confirmation_token: params[:confirmation_token])
-      if !@confirmable.new_record?
-        @confirmable.only_if_unconfirmed { yield }
-      end
-    end
-
     def do_show
-      @confirmation_token = params[:confirmation_token]
+      @confirmation_token = @confirmable.confirmation_token
       render :show
     end
 
     def do_confirm
       @confirmable.confirm!
-      #login_and_redirect
-      redirect_to "/"
+      login_and_redirect(@confirmable)
     end
 
     private

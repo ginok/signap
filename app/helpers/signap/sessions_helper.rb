@@ -17,6 +17,11 @@ module Signap
       self.session_user_id = nil
     end
 
+    def login_and_redirect(user, url=nil)
+      login(user)
+      redirect_to (url || Signap.configuration.redirect_url)
+    end
+
     protected
     def session_user_id=(id)
       session[:signap_user_id] = id

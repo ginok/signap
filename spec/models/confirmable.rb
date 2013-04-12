@@ -55,4 +55,20 @@ describe Signap::Confirmable do
       end
     end
   end
+
+  describe "#find_unconfirmed_confirmable" do
+    before(:each) { user.save }
+    it "returns confirmable which have specified token" do
+      expect(User.find_unconfirmed_confirmable(user.confirmation_token)).to eql(user)
+    end
+
+    it "returns false if specified confirmable was already confirmed" do
+      User.any_instance.stub(:confirmed?).and_return(true)
+      expect(User.find_unconfirmed_confirmable(user.confirmation_token)).to eql(false)
+    end
+
+    it "returns false if specified confirmable not found" do
+      expect(User.find_unconfirmed_confirmable("wrong token")).to eql(false)
+    end
+  end
 end

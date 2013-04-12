@@ -41,6 +41,9 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.start
+
+    # To recognize engine routes
+    @routes = Signap::Engine.routes
   end
 
   config.after(:each) do

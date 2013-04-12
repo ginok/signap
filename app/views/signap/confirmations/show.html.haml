@@ -1,4 +1,4 @@
-= form_for @confirmable, url: confirm_path do |f|
+= form_for @confirmable, method: :patch, url: confirmation_path do |f|
   = f.label :password
   = f.password_field :password
   = hidden_field_tag :confirmation_token, @confirmation_token
