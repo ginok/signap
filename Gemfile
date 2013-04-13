@@ -22,6 +22,7 @@ gem 'haml'
 
 gem 'mongoid', github: 'mongoid/mongoid', ref: '93284ce6e1f658c3f57076af9a8e5dce96082dbb'
 gem 'bcrypt-ruby'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'rspec-rails'

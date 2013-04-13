@@ -38,6 +38,10 @@ module Signap
       !!confirmed_at
     end
 
+    def confirmation_required?
+      !confirmed?
+    end
+
     protected
     def generate_confirmation_token
       self.confirmation_token = Signap.generate_token
@@ -45,10 +49,6 @@ module Signap
 
     def generate_confirmation_token!
       self.generate_confirmation_token; save
-    end
-
-    def confirmation_required?
-      !confirmed?
     end
 
     def send_on_create_confirmation_instructions
