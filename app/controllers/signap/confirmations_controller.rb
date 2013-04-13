@@ -1,5 +1,8 @@
 module Signap
   class ConfirmationsController < ApplicationController
+    def about
+    end
+
     def show
       if @confirmable = user_class.find_unconfirmed_confirmable(params[:confirmation_token])
         do_show

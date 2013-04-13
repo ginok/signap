@@ -1,7 +1,9 @@
 Signap::Engine.routes.draw do
   resources :users
   resource :session
-  resource :confirmation
+  resource :confirmation do
+    get :about
+  end
 
   get 'sign_up' => 'users#new', as: 'sign_up'
   get 'login' => 'sessions#new', as: 'login'
