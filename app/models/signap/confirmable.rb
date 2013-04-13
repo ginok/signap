@@ -8,7 +8,7 @@ module Signap
       field :confirmed_at, type: DateTime
 
       before_create :generate_confirmation_token
-      after_create :send_on_create_confirmation_instructions
+      after_create :send_on_create_confirmation_instructions, if: :send_confirmation_instructions?
     end
 
     module ClassMethods
@@ -42,6 +42,10 @@ module Signap
       !confirmed?
     end
 
+    def skip_confirmation_instructions!
+      @skip_confirmation_instructions = true
+    end
+
     protected
     def generate_confirmation_token
       self.confirmation_token = Signap.generate_token
@@ -53,6 +57,10 @@ module Signap
 
     def send_on_create_confirmation_instructions
       Signap::Mailer.confirmation_instructions(self).deliver
+    end
+
+    def send_confirmation_instructions?
+      confirmation_required? && !@skip_confirmation_instructions
     end
   end
 end

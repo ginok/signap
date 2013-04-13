@@ -12,6 +12,7 @@ module Signap
         omniauthable = self.find_or_initialize_by(signap_omni_id_facebook: params.delete(:id))
         if omniauthable.new_record?
           omniauthable.assign_attributes(params)
+          omniauthable.skip_confirmation_instructions!
           omniauthable.save!
         end
         omniauthable
