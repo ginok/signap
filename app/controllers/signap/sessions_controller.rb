@@ -1,5 +1,5 @@
 module Signap
-  class SessionsController < ApplicationController
+  class SessionsController < Signap::ApplicationController
     skip_before_action :require_login, only: [:new, :create]
 
     def new

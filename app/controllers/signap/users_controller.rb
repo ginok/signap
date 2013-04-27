@@ -1,5 +1,5 @@
 module Signap
-  class UsersController < ApplicationController
+  class UsersController < Signap::ApplicationController
     def new
       @user = user_class.new
     end

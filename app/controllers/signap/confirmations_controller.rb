@@ -1,5 +1,5 @@
 module Signap
-  class ConfirmationsController < ApplicationController
+  class ConfirmationsController < Signap::ApplicationController
     def about
     end
 
