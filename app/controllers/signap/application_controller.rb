@@ -1,6 +1,4 @@
-module Signap
-  class ApplicationController < ActionController::Base
-    include ApplicationHelper
-    include SessionsHelper
-  end
+class Signap::ApplicationController < ApplicationController
+  include Signap::ApplicationHelper
+  include Signap::SessionsHelper
 end
