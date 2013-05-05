@@ -1,8 +1,10 @@
 = form_for @confirmable, method: :patch, url: confirmation_path do |f|
-  = f.label :password
-  = f.password_field :password
-  = f.label :password_confirmation
-  = f.password_field :password_confirmation
+  .field
+    = f.label :password
+    = f.password_field :password
+  .field
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
   = render partial: 'additional_attribute_fields', locals: { form: f }
   = hidden_field_tag :confirmation_token, @confirmation_token
   = f.submit
