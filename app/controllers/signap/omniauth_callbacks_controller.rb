@@ -1,5 +1,7 @@
 module Signap
   class OmniauthCallbacksController < Signap::ApplicationController
+    skip_before_action :require_login
+
     def callback
       omniauthable =
         user_class.find_or_create_omniauthable(request[:provider], auth_hash)

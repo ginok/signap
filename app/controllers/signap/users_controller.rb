@@ -1,5 +1,7 @@
 module Signap
   class UsersController < Signap::ApplicationController
+    skip_before_action :require_login
+
     def new
       @user = user_class.new
     end

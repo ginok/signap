@@ -1,5 +1,7 @@
 module Signap
   class ConfirmationsController < Signap::ApplicationController
+    skip_before_action :require_login
+
     def about
     end
 
