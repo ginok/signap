@@ -1,3 +1,8 @@
+- if @confirmable.errors.any?
+  .alert.alert-error
+    %ul
+      - @confirmable.errors.full_messages.each do |msg|
+        %li=msg 
 = form_for @confirmable, method: :patch, url: confirmation_path do |f|
   .field
     = f.label :password
